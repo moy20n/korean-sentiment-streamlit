@@ -15,7 +15,7 @@ model = make_pipeline(CountVectorizer(), MultinomialNB())
 model.fit(df['text'], df['label'])
 
 # --- 페이지 기본 설정 ---
-st.set_page_config(page_title="감정 분석 AI", page_icon="🪼", layout="centered")
+st.set_page_config(page_title="감정 분석 AI", page_icon="💙", layout="centered")
 
 # --- CSS 스타일 ---
 st.markdown("""
@@ -111,6 +111,10 @@ div.stButton > button:first-child:hover {
   padding: 20px 20px 30px 20px;
   font-family: 'Pretendard', sans-serif;
   border-right: 1px solid #CCE5FF;
+
+  /* 너비 조정 추가 */
+  width: 320px !important;
+  min-width: 320px !important;
 }
 
 /* 사이드바 제목 스타일 */
@@ -140,7 +144,7 @@ st.sidebar.markdown("<h2>✨🍀감정 분석기🍀✨</h2>", unsafe_allow_html
 st.sidebar.markdown("한글 문장을 입력하면 감정을 분석해드려요! ☘\n\nMade by 호연")
 
 # --- 메인 UI ---
-st.markdown('<h1>🌊 한글 감정 분석 AI 🪼</h1>', unsafe_allow_html=True)
+st.markdown('<h1>🌊 한글 감정 분석 AI 🌊</h1>', unsafe_allow_html=True)
 st.markdown('<p>문장을 입력하면 감정을 분석해드려요! 🍀</p>', unsafe_allow_html=True)
 
 text = st.text_area("👇 감정을 알고 싶은 문장을 입력해 주세요:", height=180, placeholder="예) 오늘은 너무 행복해요! 🌠")
