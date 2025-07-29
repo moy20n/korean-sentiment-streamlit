@@ -113,13 +113,14 @@ div.stButton > button:first-child:hover {
   border-right: 1px solid #CCE5FF;
 }
 
-/* 사이드바 제목 */
+/* 사이드바 제목 스타일 */
 [data-testid="stSidebar"] h2 {
-  color: #004080;
+  color: #3399FF;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 24px;
   margin-bottom: 14px;
-  letter-spacing: 0.8px;
+  letter-spacing: 1.0px;
+  text-align: center;
 }
 
 /* 사이드바 텍스트 */
@@ -129,12 +130,13 @@ div.stButton > button:first-child:hover {
   font-size: 15px;
   line-height: 1.5;
   margin-top: 0;
+  text-align: center;
 }
 </style>
 """, unsafe_allow_html=True)
 
 # --- 사이드바 ---
-st.sidebar.title("✨🍀 감정 분석기🍀✨")
+st.sidebar.markdown("<h2>✨🍀감정 분석기🍀✨</h2>", unsafe_allow_html=True)
 st.sidebar.markdown("한글 문장을 입력하면 감정을 분석해드려요! ☘\n\nMade by 호연")
 
 # --- 메인 UI ---
