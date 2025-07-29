@@ -73,7 +73,7 @@ div.stButton {
   margin-bottom: 50px;
 }
 div.stButton > button:first-child {
-  background-color: #3399FF;
+  background-color: #FFFFFF;
   color: #FFFFFF;
   border: none;
   border-radius: 14px;
