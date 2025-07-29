@@ -21,7 +21,7 @@ st.set_page_config(page_title="감정 분석 AI", page_icon="🧠", layout="cent
 st.sidebar.title("✨ 감정 분석기 Ver. ChatGPT ✨")
 st.sidebar.markdown("한글 문장을 입력하면 감정을 분석해드려요! 😊\n\nMade with ❤️ by 호연")
 
-# --- CSS 스타일 + 애니메이션 ---
+# --- CSS 스타일 + 느린 반짝임 애니메이션 ---
 st.markdown("""
 <style>
 /* 기본 배경 */
@@ -55,7 +55,7 @@ div.stButton > button:first-child:hover {
   color: white;
 }
 
-/* 빛나는 네온 효과 */
+/* 느리고 부드러운 반짝임 효과 */
 /* 긍정 */
 .positive {
   font-size: 40px;
@@ -65,13 +65,8 @@ div.stButton > button:first-child:hover {
   text-shadow:
     0 0 5px #39ff14,
     0 0 10px #39ff14,
-    0 0 20px #39ff14,
-    0 0 40px #0fa,
-    0 0 80px #0fa,
-    0 0 90px #0fa,
-    0 0 100px #0fa,
-    0 0 150px #0fa;
-  animation: flickerGreen 1.5s infinite alternate, shake 0.5s infinite;
+    0 0 20px #39ff14;
+  animation: slowFlicker 4s ease-in-out infinite alternate;
 }
 
 /* 부정 */
@@ -83,10 +78,8 @@ div.stButton > button:first-child:hover {
   text-shadow:
     0 0 5px #ff073a,
     0 0 10px #ff073a,
-    0 0 20px #ff073a,
-    0 0 40px #ff073a,
-    0 0 80px #ff073a;
-  animation: flickerRed 1.5s infinite alternate, shakeStrong 0.3s infinite;
+    0 0 20px #ff073a;
+  animation: slowFlicker 4s ease-in-out infinite alternate;
 }
 
 /* 중립 */
@@ -99,35 +92,13 @@ div.stButton > button:first-child:hover {
     0 0 5px #1e90ff,
     0 0 10px #1e90ff,
     0 0 20px #1e90ff;
-  animation: flickerBlue 2s infinite alternate, shake 1.5s infinite;
+  animation: slowFlicker 4s ease-in-out infinite alternate;
 }
 
-/* 애니메이션 정의 */
-@keyframes flickerGreen {
+/* 느린 반짝임 애니메이션 정의 */
+@keyframes slowFlicker {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-@keyframes flickerRed {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-@keyframes flickerBlue {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px) rotate(-2deg);}
-  50% { transform: translateX(5px) rotate(2deg);}
-  75% { transform: translateX(-5px) rotate(-2deg);}
-}
-
-@keyframes shakeStrong {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-10px) rotate(-5deg);}
-  50% { transform: translateX(10px) rotate(5deg);}
-  75% { transform: translateX(-10px) rotate(-5deg);}
+  50% { opacity: 0.5; }
 }
 </style>
 """, unsafe_allow_html=True)
