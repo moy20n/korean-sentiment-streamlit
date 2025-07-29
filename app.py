@@ -17,99 +17,99 @@ model.fit(df['text'], df['label'])
 # --- 페이지 기본 설정 ---
 st.set_page_config(page_title="감정 분석 AI", page_icon="💙", layout="centered")
 
-# --- 사이드바 ---
-st.sidebar.title("✨ 감정 분석기 Ver. ChatGPT ✨")
-st.sidebar.markdown("한글 문장을 입력하면 감정을 분석해드려요! 😊\n\nMade with ❤️ by 호연")
-
 # --- CSS 스타일 ---
 st.markdown("""
 <style>
-/* 배경색 연한 파스텔 블루 */
+/* 전체 배경 - 투명하고 맑은 바다 느낌 파스텔 블루 */
 .main {
-  background-color: #E6F0FF;  /* 밝고 파란 파스텔 하늘색 */
+  background-color: rgba(204, 229, 255, 0.35); /* 반투명 연한 하늘색 */
   font-family: 'Pretendard', sans-serif;
-  padding: 20px 40px 40px 40px;
+  padding: 30px 50px 50px 50px;
+  min-height: 100vh;
 }
 
-/* 제목 스타일 */
+/* 제목 */
 h1 {
-  color: #1A4DFF;  /* 파란 느낌 더 강한 색상 */
+  color: #0059CC;  /* 맑고 선명한 청색 */
   font-weight: 800;
   text-align: center;
-  margin-bottom: 8px;
-  font-size: 48px;
+  margin-bottom: 12px;
+  font-size: 50px;
+  letter-spacing: 1.2px;
 }
 
-/* 부제목 스타일 */
+/* 부제목 */
 p {
-  color: #3A6EFF;
+  color: #0073E6;
   text-align: center;
   margin-top: 0;
-  margin-bottom: 40px;
-  font-size: 20px;
+  margin-bottom: 48px;
+  font-size: 22px;
   font-weight: 600;
+  letter-spacing: 0.7px;
 }
 
-/* 텍스트 박스 스타일 */
+/* 텍스트 박스 */
 .stTextArea > div > textarea {
-  background-color: #CDE1FF;  /* 부드러운 하늘색 */
+  background-color: rgba(229, 244, 255, 0.7);  /* 투명하고 부드러운 바다색 */
   font-size: 18px;
-  border-radius: 14px;
-  padding: 15px;
-  color: #1D3CCC;
+  border-radius: 16px;
+  padding: 20px;
+  color: #004A99;
   font-weight: 600;
-  border: 1.5px solid #A3BFF7;
+  border: 1.8px solid rgba(0, 102, 204, 0.3);
   min-height: 180px;
-  max-width: 700px;
+  max-width: 750px;
   margin: 0 auto;
   display: block;
   resize: vertical;
+  box-shadow: 0 0 12px rgba(0, 102, 204, 0.15);
 }
 
-/* 버튼 스타일 */
+/* 버튼 */
 div.stButton > button:first-child {
-  background-color: #82A9FF;  /* 파스텔 파란색 */
+  background-color: #3399FF;  /* 청명한 파란색 */
   color: #FFFFFF;  /* 하얀 글씨 */
   border: none;
-  border-radius: 12px;
-  padding: 0.8em 1.8em;
+  border-radius: 14px;
+  padding: 0.85em 2em;
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 0 12px #8AB4FF;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 0 14px #66B2FF;
   display: block;
-  margin: 20px auto 40px auto;
-  min-width: 240px;
+  margin: 30px auto 50px auto;
+  min-width: 260px;
 }
 div.stButton > button:first-child:hover {
-  background-color: #A3C2FF;  /* 더 밝은 파란색 */
-  box-shadow: 0 0 18px #94B8FF;
+  background-color: #66B2FF;  /* 밝은 파랑 */
+  box-shadow: 0 0 22px #99CCFF;
   color: #FFFFFF;
 }
 
-/* 결과 박스 스타일 */
+/* 결과 박스 */
 .result-box {
-  background-color: #D6E4FF;
-  max-width: 700px;
-  margin: 0 auto 40px auto;
-  padding: 30px 20px;
-  border-radius: 16px;
+  background-color: rgba(204, 229, 255, 0.8);
+  max-width: 750px;
+  margin: 0 auto 50px auto;
+  padding: 35px 25px;
+  border-radius: 18px;
   text-align: center;
-  box-shadow: 0 0 18px rgba(130, 180, 255, 0.5);
+  box-shadow: 0 0 24px rgba(51, 153, 255, 0.3);
 }
 
-/* 반짝임 글자 스타일 */
+/* 반짝임 글자 */
 .glow-text {
-  font-size: 44px;
-  font-weight: 800;
-  color: #2355FF;
+  font-size: 46px;
+  font-weight: 900;
+  color: #0073E6;
   text-align: center;
   text-shadow:
-    0 0 5px rgba(56, 102, 255, 0.6),
-    0 0 8px rgba(90, 140, 255, 0.4),
-    0 0 12px rgba(130, 180, 255, 0.3);
-  animation: borderGlow 3.5s ease-in-out infinite alternate;
+    0 0 5px rgba(0, 115, 230, 0.65),
+    0 0 8px rgba(51, 153, 255, 0.45),
+    0 0 14px rgba(102, 178, 255, 0.3);
+  animation: borderGlow 4s ease-in-out infinite alternate;
   margin-bottom: 0;
 }
 
@@ -117,16 +117,43 @@ div.stButton > button:first-child:hover {
 @keyframes borderGlow {
   0%, 100% {
     text-shadow:
-      0 0 3px rgba(56, 102, 255, 0.5),
-      0 0 5px rgba(90, 140, 255, 0.3),
-      0 0 7px rgba(130, 180, 255, 0.2);
+      0 0 4px rgba(0, 115, 230, 0.5),
+      0 0 7px rgba(51, 153, 255, 0.35),
+      0 0 10px rgba(102, 178, 255, 0.2);
   }
   50% {
     text-shadow:
-      0 0 7px rgba(56, 102, 255, 1),
-      0 0 10px rgba(90, 140, 255, 0.8),
-      0 0 15px rgba(130, 180, 255, 0.6);
+      0 0 10px rgba(0, 115, 230, 1),
+      0 0 15px rgba(51, 153, 255, 0.85),
+      0 0 25px rgba(102, 178, 255, 0.6);
   }
+}
+
+/* 사이드바 배경 및 텍스트 */
+[data-testid="stSidebar"] {
+  background-color: #F5F8FF;  /* 아주 연한 하늘색 */
+  color: #003366;
+  padding: 20px 20px 30px 20px;
+  font-family: 'Pretendard', sans-serif;
+  border-right: 1px solid #CCE5FF;
+}
+
+/* 사이드바 제목 */
+[data-testid="stSidebar"] h2 {
+  color: #004080;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 14px;
+  letter-spacing: 0.8px;
+}
+
+/* 사이드바 텍스트 */
+[data-testid="stSidebar"] p {
+  color: #004A99;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-top: 0;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -143,13 +170,12 @@ if st.button("✨ 감정 분석하기 ✨"):
     else:
         result = model.predict([text])[0]
 
-        # 감정별 CSS 클래스, 이모지, 배경색 설정
         style_map = {
-            "긍정": ("glow-text", "😊💖🎈", "#E6EEFF"),
-            "부정": ("glow-text", "😢💔🌧️", "#D4DAF8"),
-            "중립": ("glow-text", "😐📘🍃", "#E0E6F9")
+            "긍정": ("glow-text", "😊💖🎈", "rgba(204, 229, 255, 0.9)"),
+            "부정": ("glow-text", "😢💔🌧️", "rgba(179, 198, 225, 0.85)"),
+            "중립": ("glow-text", "😐📘🍃", "rgba(194, 210, 236, 0.85)")
         }
-        css_class, emoji, bg_color = style_map.get(result, ("glow-text", "🤔", "#F0F4FF"))
+        css_class, emoji, bg_color = style_map.get(result, ("glow-text", "🤔", "rgba(230, 240, 255, 0.85)"))
 
         st.markdown(
             f"""
