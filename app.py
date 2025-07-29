@@ -149,7 +149,7 @@ st.markdown('<p>문장을 입력하면 감정을 분석해드려요! 🍀</p>', 
 
 text = st.text_area("👇 감정을 알고 싶은 문장을 입력해 주세요:", height=180, placeholder="예) 오늘은 너무 행복해요! 🌠")
 
-if st.button("🪼 감정 분석하기 🪼"):
+if st.button("🍀 감정 분석하기 🍀"):
     if text.strip() == "":
         st.warning("⚠️ 문장을 입력해 주세요!")
     else:
