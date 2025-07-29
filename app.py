@@ -140,7 +140,7 @@ div.stButton > button:first-child:hover {
 """, unsafe_allow_html=True)
 
 # --- 사이드바 ---
-st.sidebar.markdown("<h2>✨🍀감정 분석기🍀✨</h2>", unsafe_allow_html=True)
+st.sidebar.markdown("<h2>✨감정 분석기✨</h2>", unsafe_allow_html=True)
 st.sidebar.markdown("한글 문장을 입력하면 감정을 분석해드려요! ☘\n\nMade by 호연")
 
 # --- 메인 UI ---
