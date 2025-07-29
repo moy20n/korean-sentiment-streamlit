@@ -20,7 +20,7 @@ model.fit(df['text'], df['label'])
 st.set_page_config(page_title="감정 분석 AI", page_icon="🧠", layout="centered")
 
 # 🎉 사이드바
-st.sidebar.title("✨ 감정 분석기 Ver. ChatGPT ✨")
+st.sidebar.title("✨ 감정 분석기 ✨")
 st.sidebar.markdown("한글 문장을 입력하면 감정을 분석해드려요! 😊\n\nMade with ❤️ by 호연")
 
 # 💬 메인 영역
