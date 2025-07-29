@@ -134,8 +134,8 @@ div.stButton > button:first-child:hover {
 """, unsafe_allow_html=True)
 
 # --- 사이드바 ---
-st.sidebar.title("🍀 감정 분석기 Ver. ChatGPT 🪼")
-st.sidebar.markdown("한글 문장을 입력하면 감정을 분석해드려요! ☘\n\nMade with ❤️ by 호연")
+st.sidebar.title("✨🍀 감정 분석기🍀✨")
+st.sidebar.markdown("한글 문장을 입력하면 감정을 분석해드려요! ☘\n\nMade by 호연")
 
 # --- 메인 UI ---
 st.markdown('<h1>🌊 한글 감정 분석 AI 🪼</h1>', unsafe_allow_html=True)
@@ -150,9 +150,9 @@ if st.button("🪼 감정 분석하기 🪼"):
         result = model.predict([text])[0]
 
         style_map = {
-            "긍정": ("😊☘", "긍정"),
-            "부정": ("😢🍀", "부정"),
-            "중립": ("😐🌠", "중립")
+            "긍정": ("😊", "긍정"),
+            "부정": ("😢", "부정"),
+            "중립": ("😐", "중립")
         }
         emoji, label = style_map.get(result, ("🤔", "알 수 없음"))
 
