@@ -21,26 +21,29 @@ st.set_page_config(page_title="감정 분석 AI", page_icon="🧠", layout="cent
 st.sidebar.title("✨ 감정 분석기 Ver. ChatGPT ✨")
 st.sidebar.markdown("한글 문장을 입력하면 감정을 분석해드려요! 😊\n\nMade with ❤️ by 호연")
 
-# --- CSS 스타일 + 테두리만 부드럽게 반짝이는 효과 ---
+# --- CSS 스타일 + 하늘색 테마 + 부드러운 테두리 반짝임 ---
 st.markdown("""
 <style>
 /* 기본 배경 */
 .main {
-  background-color: #FFF8F0;
+  background-color: #F0F4FF;  /* 연한 하늘색 느낌 */
   font-family: 'Pretendard', sans-serif;
 }
 
 /* 텍스트 영역 배경 */
 .stTextArea > div > textarea {
-  background-color: #F0F8FF;
+  background-color: #BFBFFF;  /* 은은한 진한 하늘색 */
   font-size: 16px;
   border-radius: 10px;
   padding: 10px;
+  color: #000099;
+  font-weight: 600;
+  border: 1.5px solid #6666CC;
 }
 
 /* 버튼 꾸미기 */
 div.stButton > button:first-child {
-  background-color: #87CEFA;
+  background-color: #0000CC;  /* 진한 하늘색 */
   color: white;
   border: none;
   border-radius: 8px;
@@ -49,9 +52,11 @@ div.stButton > button:first-child {
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0 0 8px #3333CC;
 }
 div.stButton > button:first-child:hover {
-  background-color: #00BFFF;
+  background-color: #4040FF;  /* 밝고 진한 하늘색 */
+  box-shadow: 0 0 14px #6666CC;
   color: white;
 }
 
@@ -60,59 +65,62 @@ div.stButton > button:first-child:hover {
 .glow-text {
   font-size: 40px;
   font-weight: bold;
-  color: #333333; /* 진한 회색 */
+  color: #000099; /* 진한 하늘색 글씨 */
   text-align: center;
-  /* 테두리 그림자 - 은은한 회색빛 */
+  /* 테두리 그림자 - 은은한 하늘색 계열 */
   text-shadow:
-    0 0 4px rgba(100, 100, 100, 0.8),
-    0 0 6px rgba(120, 120, 120, 0.6),
-    0 0 8px rgba(150, 150, 150, 0.4);
+    0 0 4px rgba(51, 51, 204, 0.8),   /* #3333CC */
+    0 0 6px rgba(102, 102, 204, 0.6), /* #6666CC */
+    0 0 8px rgba(153, 153, 204, 0.4); /* #9999CC */
   animation: borderGlow 3.5s ease-in-out infinite alternate;
 }
 
-/* 감정별 테두리 색깔만 살짝 다르게 */
+/* 감정별 약간 색상 변형 */
+/* 긍정 */
 .positive.glow-text {
   text-shadow:
-    0 0 4px rgba(50, 205, 50, 0.7),
-    0 0 6px rgba(60, 179, 113, 0.5),
-    0 0 8px rgba(34, 139, 34, 0.3);
+    0 0 5px rgba(0, 128, 255, 0.8),  /* #0080FF 약간 밝은 하늘색 */
+    0 0 8px rgba(0, 153, 255, 0.6),
+    0 0 12px rgba(51, 204, 255, 0.4);
 }
 
+/* 부정 */
 .negative.glow-text {
   text-shadow:
-    0 0 4px rgba(220, 20, 60, 0.7),
-    0 0 6px rgba(178, 34, 34, 0.5),
-    0 0 8px rgba(139, 0, 0, 0.3);
+    0 0 5px rgba(0, 51, 102, 0.8),   /* #003366 더 어두운 하늘색 */
+    0 0 8px rgba(0, 76, 153, 0.6),
+    0 0 12px rgba(0, 102, 204, 0.4);
 }
 
+/* 중립 */
 .neutral.glow-text {
   text-shadow:
-    0 0 4px rgba(70, 130, 180, 0.7),
-    0 0 6px rgba(100, 149, 237, 0.5),
-    0 0 8px rgba(65, 105, 225, 0.3);
+    0 0 5px rgba(51, 102, 153, 0.8),  /* #336699 중간톤 하늘색 */
+    0 0 8px rgba(77, 124, 153, 0.6),
+    0 0 12px rgba(115, 115, 153, 0.4);
 }
 
 /* 테두리 부드럽게 반짝임 애니메이션 */
 @keyframes borderGlow {
   0%, 100% {
     text-shadow:
-      0 0 3px rgba(100, 100, 100, 0.6),
-      0 0 5px rgba(120, 120, 120, 0.4),
-      0 0 7px rgba(150, 150, 150, 0.2);
+      0 0 3px rgba(51, 51, 204, 0.6),
+      0 0 5px rgba(102, 102, 204, 0.4),
+      0 0 7px rgba(153, 153, 204, 0.2);
   }
   50% {
     text-shadow:
-      0 0 7px rgba(100, 100, 100, 1),
-      0 0 10px rgba(120, 120, 120, 0.8),
-      0 0 15px rgba(150, 150, 150, 0.6);
+      0 0 7px rgba(51, 51, 204, 1),
+      0 0 10px rgba(102, 102, 204, 0.8),
+      0 0 15px rgba(153, 153, 204, 0.6);
   }
 }
 </style>
 """, unsafe_allow_html=True)
 
 # --- 메인 UI ---
-st.markdown('<h1 style="text-align:center; color:#2E86C1; margin-bottom: 0;">💡 한글 감정 분석 AI 🔍</h1>', unsafe_allow_html=True)
-st.markdown('<p style="text-align:center; color:#555; margin-top: 0;">문장을 입력하면 감정을 분석해드려요! 😎</p>', unsafe_allow_html=True)
+st.markdown('<h1 style="text-align:center; color:#0000CC; margin-bottom: 0;">💡 한글 감정 분석 AI 🔍</h1>', unsafe_allow_html=True)
+st.markdown('<p style="text-align:center; color:#3333CC; margin-top: 0;">문장을 입력하면 감정을 분석해드려요! 😎</p>', unsafe_allow_html=True)
 
 text = st.text_area("👇 감정을 알고 싶은 문장을 입력해 주세요:", height=150, placeholder="예) 오늘은 너무 행복해요! 🌞")
 
@@ -124,11 +132,11 @@ if st.button("✨ 감정 분석하기 ✨"):
 
         # 감정별 CSS 클래스, 이모지, 배경색 설정
         style_map = {
-            "긍정": ("positive glow-text", "😊💖🎈", "#d0f0c0"),
-            "부정": ("negative glow-text", "😢💔🌧️", "#fcdede"),
-            "중립": ("neutral glow-text", "😐📘🍃", "#e0e0e0")
+            "긍정": ("positive glow-text", "😊💖🎈", "#BFDFFF"),
+            "부정": ("negative glow-text", "😢💔🌧️", "#AAB8FF"),
+            "중립": ("neutral glow-text", "😐📘🍃", "#D1D9FF")
         }
-        css_class, emoji, bg_color = style_map.get(result, ("neutral glow-text", "🤔", "#f0f0f0"))
+        css_class, emoji, bg_color = style_map.get(result, ("neutral glow-text", "🤔", "#E0E8FF"))
 
         st.markdown(
             f"""
@@ -139,7 +147,6 @@ if st.button("✨ 감정 분석하기 ✨"):
             </div>
             """, unsafe_allow_html=True)
 
-        # 풍선 효과
         st.balloons()
 
 st.markdown("---")
